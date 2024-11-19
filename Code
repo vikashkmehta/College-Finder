@@ -1,0 +1,300 @@
+create database collegeFinderDumy;
+use collegeFinderDumy;
+CREATE TABLE University (
+    UID int PRIMARY KEY ,
+    Uname varchar(50),
+    Campusarea int,
+    State varchar(50),
+	City varchar(50),
+	Pincode int,
+    Campuslife varchar(30),
+    Transportconnectivity varchar(50),
+    Email varchar(50),
+    Calldetail int
+);
+
+ALTER TABLE University
+MODIFY Calldetail BIGINT;
+
+ALTER TABLE University
+MODIFY Uname varchar(250);
+
+-- drop table University;
+
+INSERT INTO University (UID, Uname, Campusarea, State, City, Pincode, Campuslife, Transportconnectivity, Email, Calldetail)
+VALUES (101,'DBUU', 42, 'Uttarkhand','Dehradun', '248001', 'Vibrant Campus Life', '2 star', 'abc@example.com', 1234567890);
+ 
+INSERT INTO University (UID, Uname, Campusarea, State, City, Pincode, Campuslife, Transportconnectivity, Email, Calldetail)
+VALUES (102, 'Indian Institute of Technology Roorkee', 365, 'Uttarakhand', 'Roorkee', 247667, 'Vibrant Campus Life', 'Well-connected', 'iitr@example.com', 1234567890);
+
+INSERT INTO University VALUES 
+(103, 'National Institute of Technology Uttarakhand', 100, 'Uttarakhand', 'Srinagar', 246174, 'Active Campus Life', 'Good Connectivity', 'nituk@example.com', 9876543210),
+(104, 'Graphic Era University', 45, 'Uttarakhand', 'Dehradun', 248002, 'Lively Campus Life', 'Well-connected', 'geu@example.com', 2345678901),
+(105, 'College of Engineering Roorkee', 120, 'Uttarakhand', 'Roorkee', 247667, 'Active Campus Life', 'Well-connected', 'cer@example.com', 3456789012),
+(106, 'Govind Ballabh Pant University of Agriculture and Technology', 400, 'Uttarakhand', 'Pantnagar', 263145, 'Green Campus Environment', 'Good Connectivity', 'gbpuat@example.com', 4567890123),
+(107, 'THDC Institute of Hydropower Engineering and Technology', 80, 'Uttarakhand', 'Tehri', 249124, 'Scenic Campus Location', 'Well-connected', 'thdciet@example.com', 5678901234),
+(108, 'Uttarakhand Technical University', 200, 'Uttarakhand', 'Dehradun', 248007, 'Active Campus Life', 'Well-connected', 'utu@example.com', 6789012345),
+(109, 'Doon University', 100, 'Uttarakhand', 'Dehradun', 248001, 'Lush Green Campus', 'Good Connectivity', 'doonu@example.com', 7890123456),
+(110, 'G.B. Pant University of Agriculture and Technology', 600, 'Uttarakhand', 'Pantnagar', 263145, 'Vibrant Campus Atmosphere', 'Well-connected', 'gbpuat@example.com', 8901234567),
+(111, 'Birla Institute of Applied Sciences', 80, 'Uttarakhand', 'Bhimtal', 263136, 'Serene Campus Environment', 'Good Connectivity', 'birla@example.com', 9012345678),
+(112, 'Graphic Era Hill University', 150, 'Uttarakhand', 'Bhimtal', 263136, 'Extracurricular Activities', 'Well-connected', 'gehu@example.com', 9123456789),
+(113, 'HNB Garhwal University', 350, 'Uttarakhand', 'Srinagar', 246174, 'Diverse Campus Life', 'Good Connectivity', 'hnbgu@example.com', 8234567890),
+(114, 'Kumaun University', 500, 'Uttarakhand', 'Nainital', 263001, 'Scenic Campus Surroundings', 'Well-connected', 'kumaun@example.com', 7345678901),
+(115, 'DIT University', 100, 'Uttarakhand', 'Dehradun', 248009, 'Active Campus Community', 'Good Connectivity', 'ditu@example.com', 6456789012),
+(116, 'Dev Bhoomi Institute of Technology', 70, 'Uttarakhand', 'Dehradun', 248007, 'Thriving Campus Environment', 'Well-connected', 'dbit@example.com', 5567890123);
+
+UPDATE University
+SET Transportconnectivity = 'Not frequent'
+WHERE UID = 101;
+
+UPDATE University
+SET Uname = 'Dev Bhoomi Uttarakhand university'
+WHERE UID = 101;
+
+Select * from  University;	
+
+CREATE TABLE Eligibility (
+    UID int,
+    xyz_ExamRank int,
+    Age int,
+    Class12thMarks int,
+    FOREIGN KEY (UID) REFERENCES University(UID)
+);
+
+ALTER TABLE Eligibility
+MODIFY Age varchar(50);
+ALTER TABLE Eligibility
+MODIFY Class12thMarks varchar(50);
+
+INSERT INTO Eligibility VALUES
+(101, 20000, '18 yrs', '80%'),
+(102, 15000, '19 yrs', '75%'),
+(103, 1000, '18 yrs', '85%'),
+(104, 8000, '17 yrs', '78%'),
+(105, 20000, '18 yrs', '82%'),
+(106, 3000, '19 yrs', '85%'),
+(107, 12000, '18 yrs', '77%'),
+(108, 5000, '17 yrs', '81%'),
+(109, 150, '18 yrs', '78%'),
+(110, 800, '19 yrs', '83%'),
+(111, 2500, '17 yrs', '79%'),
+(112, 18000, '18 yrs', '83%'),
+(113, 7000, '19 yrs', '76%'),
+(114, 3500, '18 yrs', '81%'),
+(115, 10000, '17 yrs', '77%'),
+(116, 1200, '19 yrs', '85%');
+
+select * from Eligibility;
+
+
+CREATE TABLE Placement (
+    UID int,
+    PlacementRatio varchar(50),
+    TopCompany varchar(100),
+    TotalCompaniesVisited int,
+    HighestPackage varchar(50),
+    FOREIGN KEY (UID) REFERENCES University(UID)
+);
+
+INSERT INTO Placement VALUES
+(101, '80%', 'ABC Company', 50, '10 LPA'),
+(102, '75%', 'XYZ Corporation', 45, '9 LPA'),
+(103, '90%', 'PQR Ltd.', 60, '12 LPA'),
+(104, '70%', 'LMN Industries', 40, '8 LPA'),
+(105, '85%', 'DEF Enterprises', 55, '11 LPA'),
+(106, '80%', 'GHI Corporation', 50, '10 LPA'),
+(107, '75%', 'JKL Ltd.', 45, '9 LPA'),
+(108, '90%', 'MNO Industries', 60, '12 LPA'),
+(109, '70%', 'PQR Enterprises', 40, '8 LPA'),
+(110, '85%', 'STU Corporation', 55, '11 LPA'),
+(111, '80%', 'ABC Company', 50, '10 LPA'),
+(112, '75%', 'XYZ Corporation', 45, '9 LPA'),
+(113, '90%', 'PQR Ltd.', 60, '12 LPA'),
+(114, '70%', 'LMN Industries', 40, '8 LPA'),
+(115, '85%', 'DEF Enterprises', 55, '11 LPA'),
+(116, '80%', 'GHI Corporation', 50, '10 LPA');
+
+select * from placement;
+
+CREATE TABLE Fee_Structure (
+    UID int,
+    SemesterFee int,
+    HostelFee int,
+    ExtraCharges int,
+    TotalFee int,
+    FOREIGN KEY (UID) REFERENCES University(UID)
+);
+
+INSERT INTO Fee_Structure VALUES
+(101, 50000, 25000, 5000, 80000),
+(102, 60000, 30000, 6000, 96000),
+(103, 55000, 28000, 5500, 88300),
+(104, 52000, 26000, 5200, 83200),
+(105, 57000, 29000, 5700, 91700),
+(106, 50000, 25000, 5000, 80000),
+(107, 60000, 30000, 6000, 96000),
+(108, 55000, 28000, 5500, 88300),
+(109, 52000, 26000, 5200, 83200),
+(110, 57000, 29000, 5700, 91700),
+(111, 50000, 25000, 5000, 80000),
+(112, 60000, 30000, 6000, 96000),
+(113, 55000, 28000, 5500, 88300),
+(114, 52000, 26000, 5200, 83200),
+(115, 57000, 29000, 5700, 91700),
+(116, 50000, 25000, 5000, 80000);
+
+select * from Fee_Structure;
+
+
+CREATE TABLE Scholarship (
+    UID int,
+    Availability varchar(30),
+    WithinStateScholarship varchar(50),
+    ParentIncome int,
+    xyz_examrank int,
+    FOREIGN KEY (UID) REFERENCES University(UID)
+);
+
+ALTER TABLE Scholarship
+MODIFY ParentIncome varchar(250);
+
+INSERT INTO Scholarship VALUES 
+(101, 'Yes', '10%', 'Below 5 lakhs',1000),
+(102, 'No', NULL, 'Above 10 lakhs',300),
+(103, 'Yes', '12%', 'Below 5 lakhs',500),
+(104, 'Yes', '8%', 'Below 5 lakhs',4000),
+(105, 'No', NULL, 'Above 10 lakhs',1300),
+(106, 'Yes', '15%', 'Below 5 lakhs',1602),
+(107, 'No', NULL, 'Above 10 lakhs',17823),
+(108, 'Yes', '12%', 'Below 5 lakhs',38972),
+(109, 'Yes', '5%', 'Below 5 lakhs',2725),
+(110, 'No', NULL, 'Above 10 lakhs',38323),
+(111, 'Yes', '12%', 'Below 5 lakhs',45843),
+(112, 'No', NULL, 'Above 10 lakhs',58826),
+(113, 'Yes', '14%', 'Below 5 lakhs',2244),
+(114, 'Yes', '8%', 'Below 5 lakhs',13476),
+(115, 'No', NULL, 'Above 10 lakhs',1378),
+(116, 'Yes', '10%', 'Below 5 lakhs',5000);
+
+select * from Scholarship;
+
+-- Now we are using jions (Inner join)
+SELECT University.Uname, Eligibility.Age, Placement.PlacementRatio, Fee_Structure.SemesterFee
+FROM University
+INNER JOIN Eligibility ON University.UID = Eligibility.UID
+INNER JOIN Placement ON University.UID = Placement.UID
+INNER JOIN Fee_Structure ON University.UID = Fee_Structure.UID;
+
+-- Now using Left jion
+SELECT University.Uname, Eligibility.Age, Placement.PlacementRatio, Fee_Structure.SemesterFee
+FROM University
+LEFT JOIN Eligibility ON University.UID = Eligibility.UID
+LEFT JOIN Placement ON University.UID = Placement.UID
+LEFT JOIN Fee_Structure ON University.UID = Fee_Structure.UID;
+
+-- Now using Right join
+SELECT University.Uname, Eligibility.Age, Placement.PlacementRatio, Fee_Structure.SemesterFee
+FROM University
+RIGHT JOIN Eligibility ON University.UID = Eligibility.UID
+RIGHT JOIN Placement ON University.UID = Placement.UID
+RIGHT JOIN Fee_Structure ON University.UID = Fee_Structure.UID;
+
+
+-- Now using full join
+SELECT University.Uname, Eligibility.Age, Placement.PlacementRatio, Fee_Structure.SemesterFee
+FROM University
+LEFT JOIN Eligibility ON University.UID = Eligibility.UID
+LEFT JOIN Placement ON University.UID = Placement.UID
+LEFT JOIN Fee_Structure ON University.UID = Fee_Structure.UID
+UNION
+SELECT University.Uname, Eligibility.Age, Placement.PlacementRatio, Fee_Structure.SemesterFee
+FROM University
+RIGHT JOIN Eligibility ON University.UID = Eligibility.UID
+RIGHT JOIN Placement ON University.UID = Placement.UID
+RIGHT JOIN Fee_Structure ON University.UID = Fee_Structure.UID;
+
+
+-- Stored procedure for inserting data in univerity table
+DELIMITER //
+CREATE PROCEDURE InsertUniversity(
+	IN p_UID int,
+    IN p_Uname VARCHAR(250),
+    IN p_Campusarea INT,
+    IN p_State VARCHAR(50),
+    IN p_City VARCHAR(50),
+    IN p_Pincode INT,
+    IN p_Campuslife VARCHAR(30),
+    IN p_Transportconnectivity VARCHAR(50),
+    IN p_Email VARCHAR(50),
+    IN p_Calldetail BIGINT
+)
+BEGIN
+    INSERT INTO University 
+    VALUES (p_UID, p_Uname, p_Campusarea, p_State, p_City, p_Pincode, p_Campuslife, p_Transportconnectivity, p_Email, p_Calldetail);
+END //
+DELIMITER ;
+
+-- Drop procedure InsertUniversity; (droped this once because i missed uid coulumn)
+
+-- Now calling that stored procedure
+CALL InsertUniversity(117,'UPES University', 50, 'Uttarakhand', 'Dehradun', 248007, 'Vibrant Campus Life', 'late Transport Connectivity', 'upes@example.com', 123456789);
+select * from university;
+
+
+--  Stored Procedure for checking colleges from particular city
+-- The following SQL statement creates a stored procedure that selects colleges from a particular City from the "University" table:
+
+DELIMITER //
+CREATE PROCEDURE GetCollegesByCity(
+    IN p_City VARCHAR(50)
+)
+BEGIN
+    SELECT *
+    FROM University
+    WHERE City = p_City;
+END //
+DELIMITER ;
+
+CALL GetCollegesByCity('dehradun');
+
+/* Here's an example of a stored procedure that accepts parameters for state, total fee, and scholarship availability,
+   and retrieves the names of colleges that satisfy all these criteria */
+   
+
+DELIMITER //
+CREATE PROCEDURE GetCollegesByCriteria(
+    IN p_State VARCHAR(50),
+    IN p_TotalFee INT,
+    IN p_Class12thMarks INT
+)
+BEGIN
+    DECLARE rowCount INT;
+    
+    SELECT COUNT(*) INTO rowCount
+    FROM University U
+    INNER JOIN Eligibility E ON U.UID = E.UID
+    INNER JOIN Fee_Structure FS ON U.UID = FS.UID
+    WHERE U.State = p_State
+        AND FS.TotalFee <= p_TotalFee
+        AND E.Class12thMarks >= p_Class12thMarks;
+    
+    IF rowCount > 0 THEN
+        SELECT U.Uname, FS.TotalFee, E.Class12thMarks
+        FROM University U
+        INNER JOIN Eligibility E ON U.UID = E.UID
+        INNER JOIN Fee_Structure FS ON U.UID = FS.UID
+        WHERE U.State = p_State
+            AND FS.TotalFee <= p_TotalFee
+            AND E.Class12thMarks >= p_Class12thMarks;
+    ELSE
+        SELECT 'No matching records found.';
+    END IF;
+END //
+DELIMITER ;
+
+/* In this code, I've added a variable rowCount to store the count of matching records. Before fetching the actual data, 
+the stored procedure checks the value of rowCount. If it is greater than 0, indicating the presence of matching records, 
+the result is returned. Otherwise, a message stating "No matching records found." is returned. */
+
+-- Now calling this procedure
+CALL GetCollegesByCriteria('uttarakhand', 100000, 75);
